@@ -1,0 +1,63 @@
+{
+    "tools": [
+        {
+            "name": "atom",
+            "repository": "https://github.com/etauker/setup-atom",
+            "command": "sh setup.sh"
+        },
+        {
+            "name": "sublime",
+            "repository": "https://github.com/etauker/setup-sublime",
+            "command": "sh setup.sh"
+        }
+    ],
+    "settings": {
+        "atom": [
+            {
+                "name": "work",
+                "repository": "https://github.wdf.sap.corp/C5265227/config-atom",
+                "branch": "work"
+            },
+            {
+                "name": "personal",
+                "repository": "https://github.com/etauker/config-atom",
+                "branch": "personal"
+            },
+            {
+                "name": "shared",
+                "repository": "https://github.com/etauker/config-atom",
+                "branch": "shared"
+            },
+            {
+                "name": "personal",
+                "repository": "https://github.com/etauker/config-sublime",
+                "branch": "personal"
+            },
+            {
+                "name": "shared",
+                "repository": "https://github.com/etauker/config-sublime",
+                "branch": "shared"
+            }
+        ]
+    },
+    "profiles": [
+        {
+            "name": "work-laptop",
+            "platform": "Windows",
+            "tools": ["atom"],
+            "settings": ["work", "personal", "shared"],
+            "symlinks": [
+                {
+                    "directory": "/e/My Projects/Git/temp",
+                    "link": "~/dev"
+                }
+            ]
+        },
+        {
+            "name": "home-pc",
+            "platform": "MacOS",
+            "tools": ["atom", "sublime"],
+            "settings": ["personal", "shared"]
+        }
+    ]
+}

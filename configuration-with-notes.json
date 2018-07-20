@@ -1,0 +1,85 @@
+Setup                                    - contains and runs the global setup script
+|-- Setup Config                         - contains configuration for the global setup script
+|-- Setup Atom                           - contains scripts for installing and setting up atom
+    |-- Config Atom - work               - contains user settings for work atom configuration
+    |-- Config Atom - personal           - contains user settings for personal atom configuration
+    |-- Config Atom - shared             - contains user settings for shared atom configuration
+|-- Setup Sublime                        - contains scripts for installing and setting up sublime
+    |-- Config Sublime - work            - contains user settings for work sublime configuration
+    |-- Config Sublime - personal        - contains user settings for personal sublime configuration
+    |-- Config Sublime - shared          - contains user settings for shared sublime configuration
+
+    {
+        "tools": [
+            {
+                "name": "atom",
+                "repository": "https://github.com/etauker/setup-atom",
+                "command": "sh setup.sh"
+            },
+            {
+                "name": "sublime",
+                "repository": "https://github.com/etauker/setup-sublime",
+                "command": "sh setup.sh"
+            }
+        ],
+        "settings": {
+            "atom": [
+                {
+                    "name": "work",
+                    "repository": "https://github.wdf.sap.corp/C5265227/config-atom",
+                    "branch": "work"
+                },
+                {
+                    "name": "personal",
+                    "repository": "https://github.com/etauker/config-atom",
+                    "branch": "personal"
+                },
+                {
+                    "name": "shared",
+                    "repository": "https://github.com/etauker/config-atom",
+                    "branch": "shared"
+                },
+                {
+                    "name": "personal",
+                    "repository": "https://github.com/etauker/config-sublime",
+                    "branch": "personal"
+                },
+                {
+                    "name": "shared",
+                    "repository": "https://github.com/etauker/config-sublime",
+                    "branch": "shared"
+                }
+            ]
+        },
+        "profiles": [
+            {
+                "name": "work-laptop",
+                "platform": "Windows",
+                "tools": ["atom"],
+                "settings": ["work", "personal", "shared"],
+                "symlinks": [
+                    {
+                        "from": "/workspace/git/",
+                        "to": "~/dev"
+                    }
+                ]
+            },
+            {
+                "name": "home-pc",
+                "platform": "Windows",
+                "tools": ["atom", "sublime"],
+                "settings": ["personal", "shared"]
+            }
+        ]
+    }
+
+## Bash
+=> sh /dev/setup.sh
+Please enter a profile to set up on this computer:
+=> work-laptop
+
+
+
+## JQ
+cat configuration.json | jq '.[]|keys'
+cat configuration.json | jq '.profiles[] | select (.name=="work-laptop")'
