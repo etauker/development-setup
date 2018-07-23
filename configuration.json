@@ -2,7 +2,7 @@
     "tools": [
         {
             "name": "atom",
-            "repository": "https://github.com/etauker/setup-atom",
+            "repository": "https://github.com/etauker/config-atom",
             "command": "sh setup.sh"
         },
         {

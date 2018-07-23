@@ -53,9 +53,10 @@ echo "ln -s $directory $link"
 eval "ln -s $directory $link"
 
 # Clone repositories
-repo=$(cat ./configuration.json | jq '.tools[] | select (.name=="atom") | .repository ' | sed s/\"//g)
-# echo $repo
-echo ""
-
+repo="`cat ./configuration.json | jq '.tools[] | select (.name=="atom") | .repository ' | sed s/\\\"//g`"
+eval "cd $link"
+pwd
+echo $repo
+git clone $repo
 
 # Run setup script
