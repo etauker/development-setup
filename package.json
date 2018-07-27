@@ -1,0 +1,6 @@
+{
+    "name": "com.etauker.development-setup",
+    "version": "1.0.0",
+    "description": "A platform for automating development environment setup.",
+    "main": "index.js"
+}

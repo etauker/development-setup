@@ -3,12 +3,12 @@
         {
             "name": "atom",
             "repository": "https://github.com/etauker/config-atom",
-            "command": "sh setup.sh"
+            "command": "node setup.js"
         },
         {
             "name": "sublime",
             "repository": "https://github.com/etauker/setup-sublime",
-            "command": "sh setup.sh"
+            "command": "bash setup.bash"
         }
     ],
     "settings": {
@@ -43,8 +43,9 @@
     "profiles": [
         {
             "name": "work-laptop",
-            "platform": "Windows",
+            "platform": "MacOS",
             "tools": ["atom"],
+            "workspace": "/e/My Projects/Git",
             "settings": ["work", "personal", "shared"],
             "symlinks": [
                 {
@@ -55,9 +56,10 @@
         },
         {
             "name": "home-pc",
-            "platform": "MacOS",
-            "tools": ["atom", "sublime"],
-            "settings": ["personal", "shared"]
+            "platform": "Windows",
+            "tools": ["atom"],
+            "settings": ["personal", "shared"],
+            "workspace": "E:\\My Projects\\Git"
         }
     ]
 }
