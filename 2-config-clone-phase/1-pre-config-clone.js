@@ -1,3 +1,3 @@
 /*
- * This script will be executed before the repository containing user configurationa is cloned.
+ * This script will be executed before the repository containing user configurations is cloned.
  */
