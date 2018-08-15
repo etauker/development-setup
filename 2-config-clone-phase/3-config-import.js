@@ -33,7 +33,7 @@ configImportStep.run = function(oConfig) {
     oConfig.profile = oProfile.name;
     oConfig.tools = aTools;
     console.log(oConfig);
-    console.log(oConfig.tools.settings);
+    console.log(oConfig.tools[0].settings);
 
     // TODO: Export environment variables based on configuration file.
     // TODO: Create directories defined by the user in the configuration file.
