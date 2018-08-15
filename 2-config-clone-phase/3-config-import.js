@@ -20,7 +20,7 @@ configImportStep.run = function(oConfig) {
 
     oProfile.tools = aTools;
     oConfig.profile = oProfile;
-    console.log(oConfig);
+    console.log(oConfig.profile);
     return oConfig;
 
     // Export environment variables based on configuration file.
