@@ -5,26 +5,22 @@ let fs = require('fs');
 let helper = require('../lib/helper.js');
 var configImportStep = {};
 configImportStep.run = function(oConfig) {
-    console.log("==> Entering onfig import step...");
+    console.log("==> Entering config import step...");
 
     // Import configuration
     var sRepositoryName = helper.extractRepoName(oConfig.configRepo);
     let sFilepath = oConfig.workspace + "/" + sRepositoryName + "/" + oConfig.configFile;
     let sFullConfig = fs.readFileSync(sFilepath, 'utf8');
     let oFullConfig = JSON.parse(sFullConfig);
+    let oProfile = oFullConfig.profiles.filter(p => p.name === oConfig.options.profile)[0];
 
-    var oProfile = oFullConfig.profiles.filter(p => p.name === oConfig.options.profile)[0];
-
-    var aTools = oFullConfig.tools.filter(oTool => {
+    var aTools = oFullConfig.tools
+    .filter(oTool => {
         return oProfile.tools.includes(oTool.name);
-    });
-
-    aTools = aTools.map(oTool => {
-        // Get all settings for the tool
+    })
+    .map(oTool => {
         oTool.settings = oFullConfig.settings[oTool.name];
-        // Filter using settings defined in the profile
         oTool.settings = oTool.settings.filter(oSetting => oProfile.settings.includes(oSetting.name));
-        // Map the tools
         return oTool;
     })
 
@@ -32,11 +28,13 @@ configImportStep.run = function(oConfig) {
     oConfig.platform = oProfile.platform;
     oConfig.profile = oProfile.name;
     oConfig.tools = aTools;
-    console.log(oConfig);
-    console.log(oConfig.tools[0].settings);
 
-    // TODO: Export environment variables based on configuration file.
-    // TODO: Create directories defined by the user in the configuration file.
+    // Export environment variables based on configuration file.
+    // TODO
+
+    // Create directories defined by the user in the configuration file.
+    // TODO
+
     console.log("<== Config import step complete.");
     return oConfig;
 }
