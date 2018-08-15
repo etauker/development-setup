@@ -37,9 +37,7 @@ let helper = require('./lib/helper.js');
     let sInitialConfigurationPath = "./initial-configuration.json";
     let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
     var oConfig = JSON.parse(sConfig);
-    // process.argv.forEach(function (val, index, array) {
-    //     console.log(index + ': ' + val);
-    // });
+    oConfig = this._parseArguments(oConfig);
 
     // Configuration clone phase
     oConfig = preConfigCloneStep.run(oConfig) || oConfig;
@@ -72,6 +70,19 @@ let helper = require('./lib/helper.js');
     //         );
     //     }
     // });
+    function _parseArguments(oConfig) {
 
+        // Set defaults
+        options.install = oConfig.options.install || false;
+
+        // Parse command line options
+        process.argv.forEach(function (sArg, iIndex, aArray) {
+            if (sArg === "--install" || sArg === "-i") { options.install = true; }
+        });
+
+        oConfig.options = options;
+        console.log(oConfig);
+        return oConfig;
+    }
 
 })();
