@@ -82,7 +82,7 @@ let helper = require('./lib/helper.js');
         // Parse command line options
         process.argv.forEach(function (sArg, iIndex, aArray) {
           if (sArg === "--install" || sArg === "-i") { options.install = true; }
-          else if (sArg.indexOf("--profile=") != -1) { sArg.match(/--profile=(.*)/)[1]; }
+          else if (sArg.indexOf("--profile=") != -1) { options.profileName = sArg.match(/--profile=(.*)/)[1]; }
         });
 
         oConfig.options = options;
