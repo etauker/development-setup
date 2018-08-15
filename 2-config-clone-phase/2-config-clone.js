@@ -11,7 +11,6 @@ configCloneStep.run = function(oIntialConfig) {
 
     // Clone the repository if it doesn't already exist
     var sRepositoryName = helper.extractRepoName(oIntialConfig.configRepo);
-
     if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oIntialConfig.configRepo)) {
         // Pull latest changes from configRepo/configBranch
         helper.changeDirectory(oIntialConfig.os, oIntialConfig.workspace, sRepositoryName)
