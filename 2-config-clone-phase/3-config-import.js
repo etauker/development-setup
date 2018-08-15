@@ -28,14 +28,15 @@ configImportStep.run = function(oConfig) {
         return oTool;
     })
 
+    oConfig.workspace = oProfile.workspace;
+    oConfig.platform = oProfile.platform;
+    oConfig.profile = oProfile.name;
+    oConfil.tools = aTools;
+    console.log(oConfig);
 
-    oProfile.tools = aTools;
-    oConfig.profile = oProfile;
-    console.log(oConfig.profile);
-    return oConfig;
-
-    // Export environment variables based on configuration file.
-    // Create directories defined by the user in the configuration file.
+    // TODO: Export environment variables based on configuration file.
+    // TODO: Create directories defined by the user in the configuration file.
     console.log("<== Config import step complete.");
+    return oConfig;
 }
 module.exports = configImportStep;
