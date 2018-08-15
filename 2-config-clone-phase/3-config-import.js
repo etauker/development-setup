@@ -12,7 +12,7 @@ configImportStep.run = function(oConfig) {
     let sFilepath = oConfig.workspace + "/" + sRepositoryName + "/" + oConfig.configFile;
     let sFullConfig = fs.readFileSync(sFilepath, 'utf8');
     let oFullConfig = JSON.parse(sFullConfig);
-    oConfig.profile = sFullConfig.profiles.filter(p => return p.name === oConfig.options.profileName);
+    oConfig.profile = sFullConfig.profiles.filter(p => p.name === oConfig.options.profileName);
     console.log(oConfig);
     return oConfig;
 
