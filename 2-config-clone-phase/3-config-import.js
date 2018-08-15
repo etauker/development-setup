@@ -31,7 +31,7 @@ configImportStep.run = function(oConfig) {
     oConfig.workspace = oProfile.workspace;
     oConfig.platform = oProfile.platform;
     oConfig.profile = oProfile.name;
-    oConfil.tools = aTools;
+    oConfig.tools = aTools;
     console.log(oConfig);
 
     // TODO: Export environment variables based on configuration file.
