@@ -14,9 +14,20 @@ configImportStep.run = function(oConfig) {
     let oFullConfig = JSON.parse(sFullConfig);
 
     var oProfile = oFullConfig.profiles.filter(p => p.name === oConfig.options.profileName)[0];
-    var aTools = oFullConfig.tools.filter(oToolConfig => {
-        return oProfile.tools.filter(oTool => oTool === oToolConfig.name)[0];
+
+    var aTools = oFullConfig.tools.filter(oTool => {
+        return oProfile.tools.includes(oTool.name);
+    });
+
+    aTools = aTools.map(oTool => {
+        // Get all settings for the tool
+        oTool.settings = oFullConfig.settings[oTool.name];
+        // Filter using settings defined in the profile
+        oTool.settings = oTool.settings.filter(oSetting => oProfile.settings.includes(oSetting.name));
+        // Map the tools
+        return oTool;
     })
+
 
     oProfile.tools = aTools;
     oConfig.profile = oProfile;
