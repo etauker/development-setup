@@ -37,6 +37,9 @@ let helper = require('./lib/helper.js');
     let sInitialConfigurationPath = "./initial-configuration.json";
     let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
     var oConfig = JSON.parse(sConfig);
+    // process.argv.forEach(function (val, index, array) {
+    //     console.log(index + ': ' + val);
+    // });
 
     // Configuration clone phase
     oConfig = preConfigCloneStep.run(oConfig) || oConfig;

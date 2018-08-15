@@ -2,6 +2,6 @@
     "configRepo": "git@github.com:etauker/configurations.git",
     "configBranch": "development-setup",
     "configFile": "configuration.json",
-    "workspace": "~/workspace",
+    "workspace": "/home/etauker/workspace",
     "os": "Ubuntu"
 }
