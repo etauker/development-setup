@@ -13,7 +13,7 @@ configImportStep.run = function(oConfig) {
     let sFullConfig = fs.readFileSync(sFilepath, 'utf8');
     let oFullConfig = JSON.parse(sFullConfig);
 
-    var oProfile = oFullConfig.profiles.filter(p => p.name === oConfig.options.profileName)[0];
+    var oProfile = oFullConfig.profiles.filter(p => p.name === oConfig.options.profile)[0];
 
     var aTools = oFullConfig.tools.filter(oTool => {
         return oProfile.tools.includes(oTool.name);

@@ -76,7 +76,7 @@ let helper = require('./lib/helper.js');
         var config = oConfig.options || {};
         var options = {
             install: config.install || false,
-            profileName: config.profile || "default"
+            profile: config.profile || "default"
         };
 
         // Parse command line options
