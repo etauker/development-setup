@@ -18,8 +18,8 @@ configImportStep.run = function(oConfig) {
         return oProfile.tools.filter(oTool => oTool === oToolConfig.name)[0];
     })
 
-    profile.tools = aTools;
-    oConfig.profile = profile;
+    oProfile.tools = aTools;
+    oConfig.profile = oProfile;
     console.log(oConfig);
     return oConfig;
 
