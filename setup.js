@@ -76,13 +76,13 @@ let helper = require('./lib/helper.js');
         var config = oConfig.options || {};
         var options = {
             install: config.install || false,
-            profileName: config.profileName || "default"
+            profileName: config.profile || "default"
         };
 
         // Parse command line options
         process.argv.forEach(function (sArg, iIndex, aArray) {
           if (sArg === "--install" || sArg === "-i") { options.install = true; }
-          else if (sArg.indexOf("--profile=") != -1) { options.profileName = sArg.match(/--profile=(.*)/)[1]; }
+          else if (sArg.indexOf("--profile=") != -1) { options.profile = sArg.match(/--profile=(.*)/)[1]; }
         });
 
         oConfig.options = options;
