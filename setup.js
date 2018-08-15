@@ -37,7 +37,7 @@ let helper = require('./lib/helper.js');
     let sInitialConfigurationPath = "./initial-configuration.json";
     let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
     var oConfig = JSON.parse(sConfig);
-    oConfig = this._parseArguments(oConfig);
+    oConfig = _parseArguments(oConfig);
 
     // Configuration clone phase
     oConfig = preConfigCloneStep.run(oConfig) || oConfig;
@@ -73,7 +73,9 @@ let helper = require('./lib/helper.js');
     function _parseArguments(oConfig) {
 
         // Set defaults
-        options.install = oConfig.options.install || false;
+	var options = { install: {} };
+	var config = oConfig.options || {};
+	options.install = config.install || false;
 
         // Parse command line options
         process.argv.forEach(function (sArg, iIndex, aArray) {
