@@ -11,7 +11,8 @@ toolCloneStep.run = function(oConfig) {
 
     oConfig.tools.forEach(oToolConfig => {
         // Clone the repository if it doesn't already exist
-        helper.changeDirectory(oConfig.platform, oConfig.workspace, "");
+        helper.executeCommand(`cd ${oConfig.workspace}`);
+        // helper.changeDirectory(oConfig.platform, , "");
         var sRepositoryName = helper.extractRepoName(oToolConfig.repository);
         if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oToolConfig.repository)) {
             // Pull latest changes from repository/branch
