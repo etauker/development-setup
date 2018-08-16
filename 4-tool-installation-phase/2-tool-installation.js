@@ -17,7 +17,7 @@ toolInstallationStep.run = function(oConfig) {
         else {
             try {
                 let oToolScript = require(oConfig.workspace + "/" sRepositoryName + "/"+ oToolConfig.file);
-                oToolScript.install(oToolConfig);
+                oToolScript.install(oConfig);
             } catch (error) {
                 console.error(error);
             }
