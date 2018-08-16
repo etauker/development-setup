@@ -1,8 +1,13 @@
 let fs = require('fs');
+let helper = require('./lib/helper.js');
+
 let preConfigCloneStep = require('./2-config-clone-phase/1-pre-config-clone.js');
 let configCloneStep = require('./2-config-clone-phase/2-config-clone.js');
 let configImportStep = require('./2-config-clone-phase/3-config-import.js');
-let helper = require('./lib/helper.js');
+
+let preToolCloneStep = require('./3-tool-clone-phase/1-pre-tool-clone.js');
+let toolCloneStep = require('./3-tool-clone-phase/2-tool-clone.js');
+// let configImportStep = require('./3-tool-clone-phase/3-config-import.js');
 
 (function() {
     let sInitialConfigurationPath = "./initial-configuration.json";
@@ -14,6 +19,10 @@ let helper = require('./lib/helper.js');
     oConfig = preConfigCloneStep.run(oConfig) || oConfig;
     oConfig = configCloneStep.run(oConfig) || oConfig;
     oConfig = configImportStep.run(oConfig) || oConfig;
+
+    // Configuration clone phase
+    oConfig = preToolCloneStep.run(oConfig) || oConfig;
+    oConfig = toolCloneStep.run(oConfig) || oConfig;
 
 
     // var aArgs = helper.getArguments();
