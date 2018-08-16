@@ -62,14 +62,14 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
             else if (sArg.indexOf("--profile=") != -1) { options.profile = sArg.match(/--profile=(.*)/)[1]; }
         });
 
-        oConfig.options = options;
         if (!options.install && !options.configure && !options.backup) {
-            console.warn("Install (--install, -i), configurare (--configuare, -c) and backup (--backup, -b) options not set." );
-            console.warn("The script will only download configuration repository changes." );
+            console.warn("[warn] Install (--install, -i), configurare (--configuare, -c) and backup (--backup, -b) options not set." );
+            console.warn("[warn] The script will download changes only." );
         }
         if (options.debug) {
             console.log(oConfig);
         }
+        oConfig.options = options;
         return oConfig;
     }
 
