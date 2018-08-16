@@ -39,6 +39,7 @@ configImportStep.run = function(oConfig) {
     // TODO
 
     console.log("<== Config import step complete.");
+    console.log("");
     return oConfig;
 }
 module.exports = configImportStep;

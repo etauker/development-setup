@@ -20,5 +20,6 @@ configCloneStep.run = function(oIntialConfig) {
     }
 
     console.log("<== Config clone step complete.");
+    console.log("");
 }
 module.exports = configCloneStep;

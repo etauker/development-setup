@@ -24,5 +24,6 @@ toolCloneStep.run = function(oConfig) {
     });
 
     console.log("<== Tool clone step complete.");
+    console.log("");
 }
 module.exports = toolCloneStep;
