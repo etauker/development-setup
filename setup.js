@@ -67,7 +67,7 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
             console.warn("[warn] The script will download changes but not execute them." );
         }
         if (options.debug) {
-            console.log(oConfig);
+            console.log("[debug] " + oConfig);
         }
         oConfig.options = options;
         return oConfig;
