@@ -7,7 +7,7 @@ let configImportStep = require('./2-config-clone-phase/3-config-import.js');
 
 let preToolCloneStep = require('./3-tool-clone-phase/1-pre-tool-clone.js');
 let toolCloneStep = require('./3-tool-clone-phase/2-tool-clone.js');
-// let configImportStep = require('./3-tool-clone-phase/3-config-import.js');
+let postToolCloneStep = require('./3-tool-clone-phase/3-post-tool-clone.js');
 
 (function() {
     let sInitialConfigurationPath = "./initial-configuration.json";
@@ -20,36 +20,11 @@ let toolCloneStep = require('./3-tool-clone-phase/2-tool-clone.js');
     oConfig = configCloneStep.run(oConfig) || oConfig;
     oConfig = configImportStep.run(oConfig) || oConfig;
 
-    // Configuration clone phase
+    // Tool clone phase
     oConfig = preToolCloneStep.run(oConfig) || oConfig;
     oConfig = toolCloneStep.run(oConfig) || oConfig;
+    oConfig = postToolCloneStep.run(oConfig) || oConfig;
 
-
-    // var aArgs = helper.getArguments();
-    // var oConfig = helper.getConfiguration(sFilepath);
-    // var aProfiles = oConfig.profiles;
-    // var oSelectedProfile = aProfiles.filter(profile => profile.name === aArgs["PROFILE"])[0];
-    // var aTools = oConfig.tools.filter(tools => oSelectedProfile.tools.includes(tools.name));
-    // var aSettings = oConfig.settings;
-    //
-    // // Clone git repositories
-    // aTools.forEach(function(oTool) {
-    //     var sNewDirectoryName = helper.extractRepoName(oTool.repository);
-    //
-    //     // Clone the repository if it doesn't already exist
-    //     if (fs.existsSync(sNewDirectoryName) || helper.cloneRepository(oTool.repository)) {
-    //         // TODO: Pull latest changes from oTool.branch or master
-    //         var sPlatform = oSelectedProfile.platform;
-    //         var sWorkspace = oSelectedProfile.workspace;
-    //         var sSettings = JSON.stringify(aSettings[oTool.name]).replace(/\"/g, "\\\"");
-    //         helper.changeDirectory(sPlatform, sWorkspace, sNewDirectoryName);
-    //         helper.executeCommand(oTool.command +
-    //             " --SETTINGS=" + sSettings +
-    //             " --WORKSPACE=" + sWorkspace.replace(/ /g, "_space_") +
-    //             " --PLATFORM=" + sPlatform
-    //         );
-    //     }
-    // });
     function _parseArguments(oConfig) {
 
         // Set defaults
