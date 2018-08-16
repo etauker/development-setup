@@ -6,18 +6,18 @@ let helper = require('../lib/helper.js');
 var toolCloneStep = {};
 toolCloneStep.run = function(oConfig) {
     console.log("==> Entering tool clone step...");
-
+    let sWorkspace = oConfig.workspace;
 
     oConfig.tools.forEach(oToolConfig => {
         // Clone the repository if it doesn't already exist
 
-        console.log(oConfig);
-        helper.executeCommand(`cd ${oConfig.workspace}`);
+        console.log(sWorkspace);
+        helper.executeCommand(`cd ${sWorkspace}`);
         // helper.changeDirectory(oConfig.platform, , "");
         var sRepositoryName = helper.extractRepoName(oToolConfig.repository);
         if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oToolConfig.repository)) {
             // Pull latest changes from repository/branch
-            helper.changeDirectory(oToolConfig.platform, oToolConfig.workspace, sRepositoryName)
+            helper.changeDirectory(oConfig.platform, oConfig.workspace, sRepositoryName)
             helper.executeCommand(`git checkout ${oToolConfig.branch}`);
             helper.executeCommand(`git pull origin ${oToolConfig.branch}`);
         }
