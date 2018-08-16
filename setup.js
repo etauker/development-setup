@@ -76,8 +76,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
             configure: config.configure || false,
             backup: config.backup || false,
             debug: config.debug || false,
-            help: config.help || false,
-            profile: config.profile || oConfig.profile || "default"
+            help: config.help || false
         };
 
         // Parse command line options
@@ -87,7 +86,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
             else if (sArg === "--backup" || sArg === "-b") { options.backup = true; }
             else if (sArg === "--debug" || sArg === "-d") { options.debug = true; }
             else if (sArg === "--help" || sArg === "-h") { options.help = true; }
-            else if (sArg.indexOf("--profile=") != -1) { options.profile = sArg.match(/--profile=(.*)/)[1]; }
+            else if (sArg.indexOf("--profile=") != -1) { oConfig.profile = sArg.match(/--profile=(.*)/)[1] || oConfig.profile || "default"; }
         });
 
         if (!options.install && !options.configure && !options.backup) {
