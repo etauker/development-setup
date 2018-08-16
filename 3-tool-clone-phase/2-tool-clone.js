@@ -12,8 +12,8 @@ toolCloneStep.run = function(oConfig) {
         // Clone the repository if it doesn't already exist
 
         console.log(sWorkspace);
-        helper.executeCommand(`cd ${sWorkspace}`);
-        // helper.changeDirectory(oConfig.platform, , "");
+        // helper.executeCommand(`cd ${sWorkspace}`);
+        helper.changeDirectory(oConfig.platform, sWorkspace, "");
         var sRepositoryName = helper.extractRepoName(oToolConfig.repository);
         if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oToolConfig.repository)) {
             // Pull latest changes from repository/branch
