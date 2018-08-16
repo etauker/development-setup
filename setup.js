@@ -9,6 +9,10 @@ let preToolCloneStep = require('./3-tool-clone-phase/1-pre-tool-clone.js');
 let toolCloneStep = require('./3-tool-clone-phase/2-tool-clone.js');
 let postToolCloneStep = require('./3-tool-clone-phase/3-post-tool-clone.js');
 
+let preToolInstallationStep = require('./4-tool-installation-phase/1-pre-tool-installation.js');
+let toolInstallationStep = require('./4-tool-installation-phase/2-tool-installation.js');
+let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-installation.js');
+
 (function() {
     let sInitialConfigurationPath = "./initial-configuration.json";
     let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
@@ -24,6 +28,11 @@ let postToolCloneStep = require('./3-tool-clone-phase/3-post-tool-clone.js');
     oConfig = preToolCloneStep.run(oConfig) || oConfig;
     oConfig = toolCloneStep.run(oConfig) || oConfig;
     oConfig = postToolCloneStep.run(oConfig) || oConfig;
+
+    // Tool installation phase
+    oConfig = preToolInstallationStep.run(oConfig) || oConfig;
+    oConfig = toolInstallationStep.run(oConfig) || oConfig;
+    oConfig = postToolInstallationStep.run(oConfig) || oConfig;
 
     function _parseArguments(oConfig) {
 
