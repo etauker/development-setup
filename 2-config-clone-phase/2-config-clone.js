@@ -17,6 +17,7 @@ configCloneStep.run = function(oIntialConfig) {
         helper.executeCommand(`git checkout ${oIntialConfig.configBranch}`);
         helper.executeCommand(`git pull origin ${oIntialConfig.configBranch}`);
     }
+    
     console.log("<== Config clone step complete.");
 }
 module.exports = configCloneStep;

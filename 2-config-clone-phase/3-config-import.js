@@ -35,6 +35,9 @@ configImportStep.run = function(oConfig) {
     // Create directories defined by the user in the configuration file.
     // TODO
 
+    // Move repository from ~/temp to $workspace.
+    // TODO
+
     console.log("<== Config import step complete.");
     return oConfig;
 }
