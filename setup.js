@@ -70,6 +70,7 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
             console.log("[debug] oConfig: -----");
             console.log(oConfig);
             console.log("[debug] --------------");
+            console.log("");
         }
         oConfig.options = options;
         return oConfig;
