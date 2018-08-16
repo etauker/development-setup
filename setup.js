@@ -45,7 +45,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
         oConfig = preToolInstallationStep.run(oConfig) || oConfig;
         oConfig = toolInstallationStep.run(oConfig) || oConfig;
         oConfig = postToolInstallationStep.run(oConfig) || oConfig;
-    } else if (options.debug) {
+    } else if (oConfig.options.debug) {
         console.log("[debug] Install option (--install, -i) not set, skipping tool installation phase");
         console.log("");
     }
@@ -56,7 +56,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
         oConfig = preToolConfigurationStep.run(oConfig) || oConfig;
         oConfig = toolConfigurationStep.run(oConfig) || oConfig;
         oConfig = postToolConfigurationStep.run(oConfig) || oConfig;
-    } else if (options.debug) {
+    } else if (oConfig.options.debug) {
         console.log("[debug] Configure option (--configure, -c) not set, skipping tool configuration phase");
         console.log("");
     }
@@ -67,7 +67,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
         oConfig = preToolBackupStep.run(oConfig) || oConfig;
         oConfig = toolBackupStep.run(oConfig) || oConfig;
         oConfig = postToolBackupStep.run(oConfig) || oConfig;
-    } else if (options.debug) {
+    } else if (oConfig.options.debug) {
         console.log("[debug] Backup option (--backup, -b) not set, skipping tool backup phase");
         console.log("");
     }
