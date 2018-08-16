@@ -1,13 +1,14 @@
 /*
- * Run function of this script will be executed after the repository containing user configurations is cloned.
+ *
  */
-let fs = require('fs');
-let helper = require('../lib/helper.js');
-var configImportStep = {};
-configImportStep.run = function(oConfig) {
+module.exports.run = function(oConfig) {
     console.log("==> Entering config import step...");
 
-    // Import configuration
+    // Required modules
+    let fs = require('fs');
+    let helper = require('../lib/helper.js');
+
+    // Import tool configuration
     var sRepositoryName = helper.extractRepoName(oConfig.configRepo);
     let sFilepath = oConfig.workspace + "/" + sRepositoryName + "/" + oConfig.configFile;
     let sFullConfig = fs.readFileSync(sFilepath, 'utf8');
@@ -41,5 +42,4 @@ configImportStep.run = function(oConfig) {
     console.log("<== Config import step complete.");
     console.log("");
     return oConfig;
-}
-module.exports = configImportStep;
+};

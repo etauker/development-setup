@@ -1,21 +1,27 @@
 /*
- * Run function of this script will be executed to clone the repository containing user configurations.
+ *
  */
-let fs = require('fs');
-let helper = require('../lib/helper.js');
-module.exports.run = function(oIntialConfig) {
+module.exports.run = function(oInitialConfig) {
     console.log("==> Entering config clone step...");
 
-    // Clone the repository if it doesn't already exist
-    helper.changeDirectory(oIntialConfig.platform, oIntialConfig.workspace, "");
-    var sRepositoryName = helper.extractRepoName(oIntialConfig.configRepo);
-    if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oIntialConfig.configRepo)) {
-        // Pull latest changes from configRepo/configBranch
-        helper.changeDirectory(oIntialConfig.platform, oIntialConfig.workspace, sRepositoryName)
-        helper.executeCommand(`git checkout ${oIntialConfig.configBranch}`);
-        helper.executeCommand(`git pull origin ${oIntialConfig.configBranch}`);
+    // Required modules
+    let fs = require('fs');
+    let helper = require('../lib/helper.js');
+
+    /*
+     *  Change into workspace directory
+     *  Clone the repository if it doesn't already exist
+     *  Checkout {configBranch}
+     *  Pull from origin/{configBranch}
+     */
+    helper.changeDirectory(oInitialConfig.platform, oInitialConfig.workspace, "");
+    var sRepositoryName = helper.extractRepoName(oInitialConfig.configRepo);
+    if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oInitialConfig.configRepo)) {
+        helper.changeDirectory(oInitialConfig.platform, oInitialConfig.workspace, sRepositoryName)
+        helper.executeCommand(`git checkout ${oInitialConfig.configBranch}`);
+        helper.executeCommand(`git pull origin ${oInitialConfig.configBranch}`);
     }
 
     console.log("<== Config clone step complete.");
     console.log("");
-}
+};
