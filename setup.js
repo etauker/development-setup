@@ -30,7 +30,7 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
     oConfig = postToolCloneStep.run(oConfig) || oConfig;
 
     // Tool installation phase
-    if (oConfig.option.install) {
+    if (oConfig.options.install) {
         oConfig = preToolInstallationStep.run(oConfig) || oConfig;
         oConfig = toolInstallationStep.run(oConfig) || oConfig;
         oConfig = postToolInstallationStep.run(oConfig) || oConfig;
