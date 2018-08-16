@@ -13,7 +13,7 @@ configCloneStep.run = function(oIntialConfig) {
     var sRepositoryName = helper.extractRepoName(oIntialConfig.configRepo);
     if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oIntialConfig.configRepo)) {
         // Pull latest changes from configRepo/configBranch
-        helper.changeDirectory(oIntialConfig.os, oIntialConfig.workspace, sRepositoryName)
+        helper.changeDirectory(oIntialConfig.platform, oIntialConfig.workspace, sRepositoryName)
         helper.executeCommand(`git checkout ${oIntialConfig.configBranch}`);
         helper.executeCommand(`git pull origin ${oIntialConfig.configBranch}`);
     }
