@@ -95,9 +95,9 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
             console.warn("[warn] The script will download changes but not execute them." );
         }
         if (options.debug) {
-            console.log("[debug] Initial Configuration: -----");
+            console.log("[debug] ----- Initial Configuration: -----");
             console.log(oConfig);
-            console.log("[debug] ----------------------------");
+            console.log("[debug] ----------------------------------");
             console.log("");
         }
         oConfig.options = options;
