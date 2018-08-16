@@ -9,7 +9,7 @@ toolCloneStep.run = function(oConfig) {
 
     console.log(oConfig.tools);
 
-    oConfig.tools.forEach(oToolConfig = {
+    oConfig.tools.forEach(oToolConfig => {
         // Clone the repository if it doesn't already exist
         helper.changeDirectory(oConfig.platform, oConfig.workspace, "");
         var sRepositoryName = helper.extractRepoName(oToolConfig.repository);
