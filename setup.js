@@ -63,7 +63,7 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
         });
 
         if (!options.install && !options.configure && !options.backup) {
-            console.warn("[warn] Install (--install, -i), configurare (--configuare, -c) and backup (--backup, -b) options not set." );
+            console.warn("[warn] Install (-i), configurare (-c) and backup (-b) options not set." );
             console.warn("[warn] The script will download changes only." );
         }
         if (options.debug) {
