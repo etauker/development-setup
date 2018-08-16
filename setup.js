@@ -13,6 +13,14 @@ let preToolInstallationStep = require('./4-tool-installation-phase/1-pre-tool-in
 let toolInstallationStep = require('./4-tool-installation-phase/2-tool-installation.js');
 let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-installation.js');
 
+let preToolConfigurationStep = require('./5-tool-configuration-phase/1-pre-tool-configuration.js');
+let toolConfigurationStep = require('./5-tool-configuration-phase/2-tool-configuration.js');
+let postToolConfigurationStep = require('./5-tool-configuration-phase/3-post-tool-configuration.js');
+
+let preToolBackupStep = require('./6-tool-backup-phase/1-pre-tool-backup.js');
+let toolBackupStep = require('./6-tool-backup-phase/2-tool-backup.js');
+let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
+
 (function() {
     let sInitialConfigurationPath = "./initial-configuration.json";
     let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
@@ -35,7 +43,27 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
         oConfig = toolInstallationStep.run(oConfig) || oConfig;
         oConfig = postToolInstallationStep.run(oConfig) || oConfig;
     } else {
-        console.log("Install options (--install, -i) not set, skipping tool installation phase");
+        console.log("Install option (--install, -i) not set, skipping tool installation phase");
+        console.log("");
+    }
+
+    // Tool configuration phase
+    if (oConfig.options.configure) {
+        oConfig = preToolConfigurationStep.run(oConfig) || oConfig;
+        oConfig = toolConfigurationStep.run(oConfig) || oConfig;
+        oConfig = postToolConfigurationStep.run(oConfig) || oConfig;
+    } else {
+        console.log("Configure option (--configure, -c) not set, skipping tool configuration phase");
+        console.log("");
+    }
+
+    // Tool backup phase
+    if (oConfig.options.backup) {
+        oConfig = preToolBackupStep.run(oConfig) || oConfig;
+        oConfig = toolBackupStep.run(oConfig) || oConfig;
+        oConfig = postToolBackupStep.run(oConfig) || oConfig;
+    } else {
+        console.log("Backup option (--backup, -b) not set, skipping tool backup phase");
         console.log("");
     }
 
