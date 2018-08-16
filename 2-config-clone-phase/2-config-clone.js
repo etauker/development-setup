@@ -10,6 +10,7 @@ configCloneStep.run = function(oIntialConfig) {
     console.log("==> Entering config clone step...");
 
     // Clone the repository if it doesn't already exist
+    helper.changeDirectory(oIntialConfig.platform, oIntialConfig.workspace, "");
     var sRepositoryName = helper.extractRepoName(oIntialConfig.configRepo);
     if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oIntialConfig.configRepo)) {
         // Pull latest changes from configRepo/configBranch
@@ -17,7 +18,7 @@ configCloneStep.run = function(oIntialConfig) {
         helper.executeCommand(`git checkout ${oIntialConfig.configBranch}`);
         helper.executeCommand(`git pull origin ${oIntialConfig.configBranch}`);
     }
-    
+
     console.log("<== Config clone step complete.");
 }
 module.exports = configCloneStep;
