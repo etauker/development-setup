@@ -24,7 +24,7 @@ module.exports.run = function(oConfig) {
         }
         else {
             try {
-                var sScriptFilename = oToolConfig.install ? oToolConfig.install : "start.js";
+                var sScriptFilename = oToolConfig.file ? oToolConfig.file : "start.js";
                 let oToolScript = require(`${oConfig.workspace}/${sRepositoryName}/${sScriptFilename}`);
                 oToolScript.install(oConfig);
             } catch (error) {
