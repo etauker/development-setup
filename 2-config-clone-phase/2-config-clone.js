@@ -2,11 +2,8 @@
  * Run function of this script will be executed to clone the repository containing user configurations.
  */
 let fs = require('fs');
-let exec = require('child_process').exec;
 let helper = require('../lib/helper.js');
-var configCloneStep = {};
-
-configCloneStep.run = function(oIntialConfig) {
+module.exports.run = function(oIntialConfig) {
     console.log("==> Entering config clone step...");
 
     // Clone the repository if it doesn't already exist
@@ -22,4 +19,3 @@ configCloneStep.run = function(oIntialConfig) {
     console.log("<== Config clone step complete.");
     console.log("");
 }
-module.exports = configCloneStep;
