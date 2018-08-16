@@ -67,9 +67,9 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
             console.warn("[warn] The script will download changes but not execute them." );
         }
         if (options.debug) {
-            console.log("[debug] oConfig: -----");
+            console.log("[debug] Initial Configuration: -----");
             console.log(oConfig);
-            console.log("[debug] --------------");
+            console.log("[debug] ----------------------------");
             console.log("");
         }
         oConfig.options = options;
