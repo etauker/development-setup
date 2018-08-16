@@ -2,7 +2,7 @@
  *
  */
 let fs = require('fs');
-let helper = require('./lib/helper.js');
+let helper = require('../lib/helper.js');
 var toolCloneStep = {};
 toolCloneStep.run = function(oConfig) {
     console.log("==> Entering tool clone step...");
