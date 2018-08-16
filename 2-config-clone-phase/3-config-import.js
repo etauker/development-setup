@@ -2,7 +2,7 @@
  *
  */
 module.exports.run = function(oConfig) {
-    console.log("==> Entering config import step...");
+    console.log("==> Entering config import step.");
 
     // Required modules
     let fs = require('fs');

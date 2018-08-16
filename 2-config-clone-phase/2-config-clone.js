@@ -2,7 +2,7 @@
  *
  */
 module.exports.run = function(oInitialConfig) {
-    console.log("==> Entering config clone step...");
+    console.log("==> Entering config clone step.");
 
     // Required modules
     let fs = require('fs');

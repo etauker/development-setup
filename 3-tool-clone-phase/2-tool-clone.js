@@ -2,7 +2,7 @@
  *
  */
 module.exports.run = function(oConfig) {
-    console.log("==> Entering tool clone step...");
+    console.log("==> Entering tool clone step.");
 
     // Required modules
     let fs = require('fs');
