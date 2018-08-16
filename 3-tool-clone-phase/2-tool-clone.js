@@ -17,7 +17,7 @@ toolCloneStep.run = function(oConfig) {
         var sRepositoryName = helper.extractRepoName(oToolConfig.repository);
         if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oToolConfig.repository)) {
             // Pull latest changes from repository/branch
-            helper.changeDirectory(oConfig.platform, oConfig.workspace, sRepositoryName)
+            helper.changeDirectory(oConfig.platform, oConfig.workspace, sRepositoryName);
             helper.executeCommand(`git checkout ${oToolConfig.branch}`);
             helper.executeCommand(`git pull origin ${oToolConfig.branch}`);
         }
