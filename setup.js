@@ -34,7 +34,10 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
         oConfig = preToolInstallationStep.run(oConfig) || oConfig;
         oConfig = toolInstallationStep.run(oConfig) || oConfig;
         oConfig = postToolInstallationStep.run(oConfig) || oConfig;
-    } else console.log("--install not set, skipping tool installation phase");
+    } else {
+        console.log("Install options (--install, -i) not set, skipping tool installation phase");
+        console.log("");
+    }
 
     function _parseArguments(oConfig) {
 
