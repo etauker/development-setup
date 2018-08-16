@@ -30,11 +30,11 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
     oConfig = postToolCloneStep.run(oConfig) || oConfig;
 
     // Tool installation phase
-    if (config.install) {
+    if (oConfig.install) {
         oConfig = preToolInstallationStep.run(oConfig) || oConfig;
         oConfig = toolInstallationStep.run(oConfig) || oConfig;
-        oConfig = postToolInstallationStep.run(oConfig) || oConfig;        
-    }
+        oConfig = postToolInstallationStep.run(oConfig) || oConfig;
+    } else console.log("--install not set, skipping tool installation phase");
 
     function _parseArguments(oConfig) {
 
