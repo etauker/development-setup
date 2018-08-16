@@ -99,6 +99,10 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
             console.log(oConfig);
             console.log("[debug] ----------------------------------");
             console.log("");
+            console.log("[debug] ----- Options: -----");
+            console.log(options);
+            console.log("[debug] --------------------");
+            console.log("");
         }
         oConfig.options = options;
         return oConfig;
