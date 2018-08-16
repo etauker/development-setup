@@ -45,17 +45,31 @@ let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-
         var config = oConfig.options || {};
         var options = {
             install: config.install || false,
+            configure: config.configure || false,
+            backup: config.backup || false,
+            debug: config.debug || false,
+            help: config.help || false,
             profile: config.profile || oConfig.profile || "default"
         };
 
         // Parse command line options
         process.argv.forEach(function (sArg, iIndex, aArray) {
-          if (sArg === "--install" || sArg === "-i") { options.install = true; }
-          else if (sArg.indexOf("--profile=") != -1) { options.profile = sArg.match(/--profile=(.*)/)[1]; }
+            if (sArg === "--install" || sArg === "-i") { options.install = true; }
+            else if (sArg === "--configure" || sArg === "-c") { options.configure = true; }
+            else if (sArg === "--backup" || sArg === "-b") { options.backup = true; }
+            else if (sArg === "--debug" || sArg === "-d") { options.debug = true; }
+            else if (sArg === "--help" || sArg === "-h") { options.help = true; }
+            else if (sArg.indexOf("--profile=") != -1) { options.profile = sArg.match(/--profile=(.*)/)[1]; }
         });
 
         oConfig.options = options;
-        console.log(oConfig);
+        if (!options.install && !options.configure && !options.backup) {
+            console.warn("Install (--install, -i), configurare (--configuare, -c) and backup (--backup, -b) options not set." );
+            console.warn("The script will only download configuration repository changes." );
+        }
+        if (options.debug) {
+            console.log(oConfig);
+        }
         return oConfig;
     }
 
