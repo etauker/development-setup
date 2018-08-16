@@ -1,27 +1,28 @@
-let fs = require('fs');
-let helper = require('./lib/helper.js');
-
-let preConfigCloneStep = require('./2-config-clone-phase/1-pre-config-clone.js');
-let configCloneStep = require('./2-config-clone-phase/2-config-clone.js');
-let configImportStep = require('./2-config-clone-phase/3-config-import.js');
-
-let preToolCloneStep = require('./3-tool-clone-phase/1-pre-tool-clone.js');
-let toolCloneStep = require('./3-tool-clone-phase/2-tool-clone.js');
-let postToolCloneStep = require('./3-tool-clone-phase/3-post-tool-clone.js');
-
-let preToolInstallationStep = require('./4-tool-installation-phase/1-pre-tool-installation.js');
-let toolInstallationStep = require('./4-tool-installation-phase/2-tool-installation.js');
-let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-installation.js');
-
-let preToolConfigurationStep = require('./5-tool-configuration-phase/1-pre-tool-configuration.js');
-let toolConfigurationStep = require('./5-tool-configuration-phase/2-tool-configuration.js');
-let postToolConfigurationStep = require('./5-tool-configuration-phase/3-post-tool-configuration.js');
-
-let preToolBackupStep = require('./6-tool-backup-phase/1-pre-tool-backup.js');
-let toolBackupStep = require('./6-tool-backup-phase/2-tool-backup.js');
-let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
-
 (function() {
+    
+    let fs = require('fs');
+    let helper = require('./lib/helper.js');
+
+    let preConfigCloneStep = require('./2-config-clone-phase/1-pre-config-clone.js');
+    let configCloneStep = require('./2-config-clone-phase/2-config-clone.js');
+    let configImportStep = require('./2-config-clone-phase/3-config-import.js');
+
+    let preToolCloneStep = require('./3-tool-clone-phase/1-pre-tool-clone.js');
+    let toolCloneStep = require('./3-tool-clone-phase/2-tool-clone.js');
+    let postToolCloneStep = require('./3-tool-clone-phase/3-post-tool-clone.js');
+
+    let preToolInstallationStep = require('./4-tool-installation-phase/1-pre-tool-installation.js');
+    let toolInstallationStep = require('./4-tool-installation-phase/2-tool-installation.js');
+    let postToolInstallationStep = require('./4-tool-installation-phase/3-post-tool-installation.js');
+
+    let preToolConfigurationStep = require('./5-tool-configuration-phase/1-pre-tool-configuration.js');
+    let toolConfigurationStep = require('./5-tool-configuration-phase/2-tool-configuration.js');
+    let postToolConfigurationStep = require('./5-tool-configuration-phase/3-post-tool-configuration.js');
+
+    let preToolBackupStep = require('./6-tool-backup-phase/1-pre-tool-backup.js');
+    let toolBackupStep = require('./6-tool-backup-phase/2-tool-backup.js');
+    let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
+
     let sInitialConfigurationPath = "./initial-configuration.json";
     let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
     var oConfig = JSON.parse(sConfig);
@@ -110,6 +111,5 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
         }
         oConfig.options = options;
         return oConfig;
-    }
-
+    };
 })();
