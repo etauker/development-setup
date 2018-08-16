@@ -39,6 +39,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
 
     // Tool installation phase
     if (oConfig.options.install) {
+        console.log("----- Installation Phase -----");
         oConfig = preToolInstallationStep.run(oConfig) || oConfig;
         oConfig = toolInstallationStep.run(oConfig) || oConfig;
         oConfig = postToolInstallationStep.run(oConfig) || oConfig;
@@ -49,6 +50,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
 
     // Tool configuration phase
     if (oConfig.options.configure) {
+        console.log("----- Configuration Phase -----");
         oConfig = preToolConfigurationStep.run(oConfig) || oConfig;
         oConfig = toolConfigurationStep.run(oConfig) || oConfig;
         oConfig = postToolConfigurationStep.run(oConfig) || oConfig;
@@ -59,6 +61,7 @@ let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
 
     // Tool backup phase
     if (oConfig.options.backup) {
+        console.log("----- Backup Phase: -----");
         oConfig = preToolBackupStep.run(oConfig) || oConfig;
         oConfig = toolBackupStep.run(oConfig) || oConfig;
         oConfig = postToolBackupStep.run(oConfig) || oConfig;
