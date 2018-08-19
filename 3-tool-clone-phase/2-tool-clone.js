@@ -20,6 +20,7 @@ module.exports.run = function(oConfig) {
         var sRepositoryName = helper.extractRepoName(oToolConfig.repository);
         if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oToolConfig.repository)) {
             helper.changeDirectory(oConfig.platform, oConfig.workspace, sRepositoryName);
+            helper.executeCommand(`git fetch origin`);
             helper.executeCommand(`git checkout ${oToolConfig.branch}`);
             helper.executeCommand(`git pull origin ${oToolConfig.branch}`);
         }
