@@ -20,7 +20,7 @@ module.exports.run = function(oConfig) {
         return oProfile.tools.includes(oTool.name);
     })
     .map(oTool => {
-        oTool.settings = oFullConfig.settings[oTool.name];
+        oTool.settings = oFullConfig.settings[oTool.name] || [];
         oTool.settings = oTool.settings.filter(oSetting => oProfile.settings.includes(oSetting.name));
         return oTool;
     })
