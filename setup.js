@@ -1,5 +1,5 @@
 (function() {
-    
+
     let fs = require('fs');
     let helper = require('./lib/helper.js');
 
@@ -23,22 +23,31 @@
     let toolBackupStep = require('./6-tool-backup-phase/2-tool-backup.js');
     let postToolBackupStep = require('./6-tool-backup-phase/3-post-tool-backup.js');
 
+    // Setup
     let sInitialConfigurationPath = "./initial-configuration.json";
-    let sConfig = fs.readFileSync(sInitialConfigurationPath, 'utf8');
-    var oConfig = JSON.parse(sConfig);
+    var oConfig = helper.getConfiguration(sInitialConfigurationPath, process.argv.includes("--debug") || process.argv.includes("-d"));
     oConfig = _parseArguments(oConfig);
 
+    // Print help page
+    if (oConfig.options.help) {
+        _printHelpPage();
+    }
+
     // Configuration clone phase
-    console.log("----- CONFIGURATION CLONE PHASE -----");
-    oConfig = preConfigCloneStep.run(oConfig) || oConfig;
-    oConfig = configCloneStep.run(oConfig) || oConfig;
-    oConfig = configImportStep.run(oConfig) || oConfig;
+    if (!oConfig.options.help) {
+        console.log("----- CONFIGURATION CLONE PHASE -----");
+        oConfig = preConfigCloneStep.run(oConfig) || oConfig;
+        oConfig = configCloneStep.run(oConfig) || oConfig;
+        oConfig = configImportStep.run(oConfig) || oConfig;
+    }
 
     // Tool clone phase
-    console.log("----- TOOL CLONE PHASE -----");
-    oConfig = preToolCloneStep.run(oConfig) || oConfig;
-    oConfig = toolCloneStep.run(oConfig) || oConfig;
-    oConfig = postToolCloneStep.run(oConfig) || oConfig;
+    if (!oConfig.options.help) {
+        console.log("----- TOOL CLONE PHASE -----");
+        oConfig = preToolCloneStep.run(oConfig) || oConfig;
+        oConfig = toolCloneStep.run(oConfig) || oConfig;
+        oConfig = postToolCloneStep.run(oConfig) || oConfig;
+    }
 
     // Tool installation phase
     if (oConfig.options.install) {
@@ -93,17 +102,15 @@
             else if (sArg === "--debug" || sArg === "-d") { options.debug = true; }
             else if (sArg === "--help" || sArg === "-h") { options.help = true; }
             else if (sArg.indexOf("--profile=") != -1) { oConfig.profile = sArg.match(/--profile=(.*)/)[1] || oConfig.profile || "default"; }
+            else if (sArg.indexOf("--password=") != -1) { oConfig.password = sArg.match(/--password=(.*)/)[1] || oConfig.password || ""; }
         });
 
-        if (!options.install && !options.configure && !options.backup) {
-            console.warn("[warn] Install (-i), configurare (-c) and backup (-b) options not set." );
-            console.warn("[warn] The script will download changes but not execute them." );
+        if (!options.install && !options.configure && !options.backup && !options.help) {
+            console.warn("[warn] Install (-i), configurare (-c) and backup (-b) options not set.");
+            console.warn("[warn] The script will download changes but not execute them.");
+            console.log("");
         }
         if (options.debug) {
-            console.log("[debug] ----- Initial Configuration: -----");
-            console.log(oConfig);
-            console.log("[debug] ----------------------------------");
-            console.log("");
             console.log("[debug] ----- Options: -----");
             console.log(options);
             console.log("[debug] --------------------");
@@ -111,5 +118,23 @@
         }
         oConfig.options = options;
         return oConfig;
+    };
+    function _printHelpPage() {
+
+        let sHelp = `
+    This script clones user repositories and uses plugins to download and install development tools, configure them or backup current user configuration files.
+
+        -h, --help          Print this message.
+        -i, --install       Install the tools defined in the configurations repository.
+        -c, --configure     Import backed-up user settings for tools defined in the configurations repository.
+        -b, --backup        Back up user settings for import onto a different machine.
+        -d, --debug         Show additional information about command execution.
+
+        --profile={profile}     {profile} is name of the profile to set up.
+                                Must correspond to profiles.name in the configuration repository.
+        --password={password}   {password} is the account password of the current user to be used when calling sudo within the script.
+        `;
+
+        return console.log(sHelp);
     };
 })();

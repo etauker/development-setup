@@ -16,7 +16,7 @@ module.exports.run = function(oInitialConfig) {
      */
     helper.changeDirectory(oInitialConfig.platform, oInitialConfig.workspace, "");
     var sRepositoryName = helper.extractRepoName(oInitialConfig.configRepo);
-    if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oInitialConfig.configRepo)) {
+    if (fs.existsSync(sRepositoryName) || helper.cloneRepository(oInitialConfig.configRepo, oConfig.options.debug)) {
         helper.changeDirectory(oInitialConfig.platform, oInitialConfig.workspace, sRepositoryName)
         helper.executeCommand(`git fetch origin`);
         helper.executeCommand(`git checkout ${oInitialConfig.configBranch}`);
